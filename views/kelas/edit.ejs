@@ -1,0 +1,29 @@
+<div class="container mt-3">
+    
+    <% if (msg.length !== 0) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= msg %> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <h2>Edit Data Kelas</h2>
+
+    <form action="/kelas/update/<%= data.id %>" method="post">
+        <div class="mb-3">
+            <label for="nama_kelas" class="form-label">Nama Kelas</label>
+            <input type="text" class="form-control" id="nama_kelas" name="nama_kelas" value="<%= data.nama_kelas %>" required>
+        </div>
+        <div class="mb-3">
+            <label for="jurusan" class="form-label">Jurusan</label>
+            <select class="form-select" aria-label="jurusan" name="id_jurusan" required>
+                <option value="<%= data.jurusan.id %>"><%= data.jurusan.nama_jurusan %></option>
+                <% dataJurusan.forEach((jurusan, i) => { %>
+                    <option value="<%= jurusan.id %>"><%= jurusan.nama_jurusan %></option>
+                <% }) %>
+              </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Simpan</button>
+    </form>
+    
+</div>

@@ -1,0 +1,21 @@
+<div class="container mt-5">
+    <div class="row">
+        <p class="lead">Selamat Datang, </p>
+        <div class="col text-center">
+            
+            <% if (status == 'admin') { %>
+                <h1 class="display-4"><%= data.nama %></h1>
+                <p class="lead"><%= status %></p>
+            <% }else if(status == 'dosen'){ %>
+                <h1 class="display-4"><%= data.nama %></h1>
+                <p class="lead">NIP : <%= data.nip %></p>
+                <p class="lead"><%= status %></p>
+            <% }else { %>
+                <h1 class="display-4"><%= data.nama %></h1>
+                <p class="lead">NIM : <%= data.nim %> | Kelas : <%= data.ruang.nama_kelas %> | <%= data.jurusan.nama_jurusan %></p>
+                <p class="lead"><%= status %></p>
+            <% } %>  
+        </div>
+    </div>
+</div>  
+    

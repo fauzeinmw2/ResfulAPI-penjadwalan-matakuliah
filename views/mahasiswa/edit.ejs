@@ -1,0 +1,43 @@
+<div class="container mt-3">
+    
+    <% if (msg.length !== 0) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= msg %> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <h2>Edit Data Mahasiswa</h2>
+
+    <form action="/mahasiswa/update/<%= data.nim %>" method="post">
+        <!-- <input type="hidden" name="nipOld" value=""> -->
+        <div class="mb-3">
+            <label for="nim" class="form-label">NIM</label>
+            <input type="text" class="form-control" id="nim" name="nim" value="<%= data.nim %>" required>
+        </div>
+        <div class="mb-3">
+            <label for="nama" class="form-label">Nama</label>
+            <input type="text" class="form-control" id="nama" name="nama" value="<%= data.nama %>" required>
+        </div>
+        <div class="mb-3">
+            <label for="jurusan" class="form-label">Jurusan</label>
+            <select class="form-select" aria-label="jurusan" name="id_jurusan" required>
+                <option value="<%= data.jurusan.id %>"><%= data.jurusan.nama_jurusan %></option>
+                <% dataJurusan.forEach((jurusan, i) => { %>
+                    <option value="<%= jurusan.id %>"><%= jurusan.nama_jurusan %></option>
+                <% }) %>
+              </select>
+        </div>
+        <div class="mb-3">
+            <label for="kelas" class="form-label">Kelas</label>
+            <select class="form-select" aria-label="kelas" name="id_kelas" required>
+                <option value="<%= data.ruang.id %>"><%= data.ruang.nama_kelas %></option>
+                <% dataKelas.forEach((kelas, i) => { %>
+                    <option value="<%= kelas.id %>"><%= kelas.nama_kelas %> ~ <%= kelas.jurusan.nama_jurusan %></option>
+                <% }) %>
+              </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Simpan</button>
+    </form>
+    
+</div>

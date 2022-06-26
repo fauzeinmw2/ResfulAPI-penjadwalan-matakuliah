@@ -1,0 +1,50 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-8">
+
+            <% if (msg.length !== 0) { %>
+                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    <%= msg %> 
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <% } %>
+
+            <h2>Data Tahun Pelajaran</h2>
+
+            <a href="/tapel/add" class="btn btn-primary mb-2">Tambah Tahun Pelajaran</a>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Tahun Pelajaran</th>
+                        <th scope="col">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <% if (dataTapel.length === 0) { %>
+                        <tr>
+                            <td colspan="3">
+                                <div class="alert alert-danger fw-bold" role="alert">
+                                    Data Tahun Pelajaran masih kosong.
+                                </div>
+                            </td>
+                        </tr>
+                    <% } %>
+
+                    <% dataTapel.forEach((tapel, i) => { %>
+                        <tr>
+                            <th scope="row"><%= i+1 %> </th>
+                            <td><%= tapel.tahun_pelajaran %> </td>
+                            <td>
+                                <a href="/tapel/<%= tapel.id %>" class="btn btn-success badge rounded-pill"><i class="bi bi-pencil-square"></i> Edit</a>
+                                <a onclick="return confirm('yakin mau hapus data ini?');" href="/tapel/delete/<%= tapel.id %>" class="btn btn-danger badge rounded-pill"><i class="bi bi-trash-fill"></i> Hapus</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

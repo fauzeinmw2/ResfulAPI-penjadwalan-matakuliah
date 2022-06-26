@@ -1,0 +1,50 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="mb-3">Jadwal Matakuliah</h3>
+
+            <% if (msg.length !== 0) { %>
+                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    <%= msg %> 
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <% } %>
+
+            <table class="table text-center">
+                <thead>
+                    <tr class="table-warning">
+                        <th scope="col">#</th>
+                        <th scope="col">Matakuliah</th>
+                        <th scope="col">Hari</th>
+                        <th scope="col">Jam</th>
+                        <th scope="col">Kelas</th>
+                        <th scope="col">Tahun Pelajaran</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <% if (dataJadwal.length === 0) { %>
+                        <tr>
+                            <td colspan="4">
+                                <div class="alert alert-danger fw-bold" role="alert">
+                                    Jadwal masih kosong.
+                                </div>
+                            </td>
+                        </tr>
+                    <% } %>
+
+                    <% dataJadwal.forEach((jadwal, i) => { %>
+                        <tr>
+                            <th scope="row"><%= i+1 %></th>
+                            <td><%= jadwal.matakuliah.nama_matakuliah %></td>
+                            <td><%= jadwal.hari %></td>
+                            <td><%= jadwal.jam_mulai %> - <%= jadwal.jam_selesai %></td>
+                            <td><%= jadwal.ruang.nama_kelas %></td>
+                            <td><%= jadwal.tapel.tahun_pelajaran %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

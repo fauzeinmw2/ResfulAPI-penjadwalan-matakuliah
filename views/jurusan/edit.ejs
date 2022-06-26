@@ -1,0 +1,20 @@
+<div class="container mt-3">
+    
+    <% if (msg.length !== 0) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= msg %> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <h2>Edit Data Jurusan</h2>
+
+    <form action="/jurusan/update/<%= data.id %>" method="post">
+        <div class="mb-3">
+            <label for="nama_jurusan" class="form-label">Nama Jurusan</label>
+            <input type="text" class="form-control" id="nama_jurusan" name="nama_jurusan" value="<%= data.nama_jurusan %>" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Simpan</button>
+    </form>
+    
+</div>

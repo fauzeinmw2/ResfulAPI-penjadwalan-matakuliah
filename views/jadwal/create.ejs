@@ -1,0 +1,64 @@
+<div class="container mt-3 mb-5">
+    
+    <% if (msg.length !== 0) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= msg %> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <h2>Tambah Jadwal Matakuliah Dosen</h2>
+
+    <form action="/jadwal" method="post">
+        <div class="mb-3">
+            <label for="dosen" class="form-label">Dosen</label>
+            <select class="form-select" aria-label="Default select example" name="id_dosen" required>
+                <option value="">-- Pilih Dosen --</option>
+                <% dataDosen.forEach((dosen) => { %>
+                    <option value="<%= dosen.id %>">(<%= dosen.nip %>) <%= dosen.nama %></option>
+                <% }) %>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="matakuliah" class="form-label">Matakuliah</label>
+            <select class="form-select" aria-label="Default select example" name="id_matkul" required>
+                <option value="">-- Pilih Matakuliah --</option>
+                <% dataMatakuliah.forEach((matakuliah) => { %>
+                    <option value="<%= matakuliah.id %>">(<%= matakuliah.kode_matakuliah %>) <%= matakuliah.nama_matakuliah %></option>
+                <% }) %>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="hari" class="form-label">Hari</label>
+            <input type="text" class="form-control" id="hari" name="hari" required>
+        </div>
+        <div class="mb-3">
+            <label for="jam_mulai" class="form-label">Jam Mulai</label>
+            <input type="time" class="form-control" id="jam_mulai" name="jam_mulai" required>
+        </div>
+        <div class="mb-3">
+            <label for="jam_selesai" class="form-label">Jam Selesai</label>
+            <input type="time" class="form-control" id="jam_selesai" name="jam_selesai" required>
+        </div>
+        <div class="mb-3">
+            <label for="tapel" class="form-label">Kelas</label>
+            <select class="form-select" aria-label="Default select example" name="id_kelas" required>
+                <option value="">-- Pilih Kelas --</option>
+                <% dataKelas.forEach((kelas) => { %>
+                    <option value="<%= kelas.id %>"><%= kelas.nama_kelas %> ~ <%= kelas.jurusan.nama_jurusan %></option>
+                <% }) %>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="tapel" class="form-label">Tahun Pelajaran</label>
+            <select class="form-select" aria-label="Default select example" name="id_tapel" required>
+                <option value="">-- Tahun Pelajaran --</option>
+                <% dataTapel.forEach((tapel) => { %>
+                    <option value="<%= tapel.id %>"><%= tapel.tahun_pelajaran %></option>
+                <% }) %>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Simpan</button>
+    </form>
+    
+</div>

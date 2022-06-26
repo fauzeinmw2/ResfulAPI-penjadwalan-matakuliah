@@ -1,0 +1,54 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-8">
+
+            <% if (msg.length !== 0) { %>
+                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    <%= msg %> 
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <% } %>
+
+            <h2>Daftar Dosen</h2>
+
+            <a href="/dosen/add" class="btn btn-primary mb-2">Tambah Data Dosen</a>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">NIP</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <% if (dataDosen.length === 0) { %>
+                        <tr>
+                            <td colspan="5">
+                                <div class="alert alert-danger fw-bold text-center" role="alert">
+                                    Data Dosen masih kosong.
+                                </div>
+                            </td>
+                        </tr>
+                    <% } %>
+
+                    <% dataDosen.forEach((dosen, i) => { %>
+                        <tr>
+                            <th scope="row"><%= i+1 %> </th>
+                            <td><%= dosen.nip %> </td>
+                            <td><%= dosen.nama %> </td>
+                            <td><%= dosen.username %> </td>
+                            <td>
+                                <a href="/dosen/<%= dosen.nip %>" class="btn btn-success badge rounded-pill"><i class="bi bi-pencil-square"></i> Edit</a>
+                                <a onclick="return confirm('yakin mau hapus data ini?');" href="/dosen/delete/<%= dosen.nip %>" class="btn btn-danger badge rounded-pill"><i class="bi bi-trash-fill"></i> Hapus</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Data Mahasiswa</h2>
+
+            <% if (msg.length !== 0) { %>
+                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    <%= msg %> 
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <% } %>
+
+            <a href="/mahasiswa/add" class="btn btn-primary mb-2">Tambah Data Mahasiswa</a>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">NIM</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Jurusan</th>
+                        <th scope="col">Kelas</th>
+                        <th scope="col">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <% if (dataMahasiswa.length === 0) { %>
+                        <tr>
+                            <td colspan="6">
+                                <div class="alert alert-danger fw-bold text-center" role="alert">
+                                    Data Mahasiswa masih kosong.
+                                </div>
+                            </td>
+                        </tr>
+                    <% } %>
+
+                    <% dataMahasiswa.forEach((mahasiswa, i) => { %>
+                        <tr>
+                            <th scope="row"><%= i+1 %></th>
+                            <td><%= mahasiswa.nim %></td>
+                            <td><%= mahasiswa.nama %></td>
+                            <td><%= mahasiswa.jurusan.nama_jurusan %></td>
+                            <td><%= mahasiswa.ruang.nama_kelas %></td>
+                            <td>
+                                <a href="/mahasiswa/<%= mahasiswa.nim %>" class="btn btn-success badge rounded-pill"><i class="bi bi-pencil-square"></i> Edit</a>
+                                <a onclick="return confirm('yakin mau hapus data ini?');" href="/mahasiswa/delete/<%= mahasiswa.nim %>" class="btn btn-danger badge rounded-pill"><i class="bi bi-trash-fill"></i> Hapus</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

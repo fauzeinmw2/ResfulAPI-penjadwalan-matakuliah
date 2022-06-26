@@ -1,0 +1,58 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-8">
+
+            <% if (msg.length !== 0) { %>
+                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    <%= msg %> 
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <% } %>
+
+            <h2>Data Matakuliah</h2>
+
+            <a href="/matakuliah/add" class="btn btn-primary mb-2">Tambah Matakuliah</a>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Kode Matakuliah</th>
+                        <th scope="col">Nama Matakuliah</th>
+                        <th scope="col">SKS</th>
+                        <th scope="col">Semester</th>
+                        <th scope="col">Jurusan</th>
+                        <th scope="col">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <% if (dataMatakuliah.length === 0) { %>
+                        <tr>
+                            <td colspan="7">
+                                <div class="alert alert-danger fw-bold text-center" role="alert">
+                                    Data Matakuliah masih kosong.
+                                </div>
+                            </td>
+                        </tr>
+                    <% } %>
+
+                    <% dataMatakuliah.forEach((matakuliah, i) => { %>
+                        <tr>
+                            <th scope="row"><%= i+1 %> </th>
+                            <td><%= matakuliah.kode_matakuliah %></td>
+                            <td><%= matakuliah.nama_matakuliah %></td>
+                            <td><%= matakuliah.sks %></td>
+                            <td><%= matakuliah.semester %></td>
+                            <td><%= matakuliah.jurusan.nama_jurusan %></td>
+                            <td>
+                                <a href="/matakuliah/<%= matakuliah.kode_matakuliah %>" class="btn btn-success badge rounded-pill"><i class="bi bi-pencil-square"></i> Edit</a>
+                                <a onclick="return confirm('yakin mau hapus data ini?');" href="/matakuliah/delete/<%= matakuliah.kode_matakuliah %>" class="btn btn-danger badge rounded-pill"><i class="bi bi-trash-fill"></i> Hapus</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

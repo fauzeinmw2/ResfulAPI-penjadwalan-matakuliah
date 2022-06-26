@@ -1,0 +1,32 @@
+<div class="container mt-3">
+    
+    <% if (msg.length !== 0) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= msg %> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <h2>Tambah Data Dosen</h2>
+
+    <form action="/dosen" method="post">
+        <div class="mb-3">
+            <label for="nip" class="form-label">NIP</label>
+            <input type="text" class="form-control" id="nip" name="nip" required>
+        </div>
+        <div class="mb-3">
+            <label for="nama" class="form-label">Nama</label>
+            <input type="text" class="form-control" id="nama" name="nama" required>
+        </div>
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">password</label>
+            <input type="text" class="form-control" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Simpan</button>
+    </form>
+    
+</div>

@@ -1,0 +1,2734 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "API Aplikasi Penjadwalan Matakuliah",
+    "contact": {}
+  },
+  "host": "localhost:5000",
+  "basePath": "/api",
+  "securityDefinitions": {},
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "summary": "login",
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "login",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/loginrequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Sukses"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Login successfully...",
+                "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjU1MDk0NzEzLCJleHAiOjE2NTUxODExMTN9.cq0NXGtwLw0Gm5HPepuVy2--n7ZrfJySTssoSJ08U8Q"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Vary": {
+                "type": "string",
+                "default": "Origin"
+              },
+              "Access-Control-Allow-Header": {
+                "type": "string",
+                "default": "authorization, Origin, Content-Type, Accept"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "189"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"bd-KmQghRtq/SYBcZ8IuriB7uV4qlw\""
+              },
+              "Set-Cookie": {
+                "type": "string",
+                "default": "connect.sid=s%3AzMEvkSq60xRTA3EDbr_-BRyJfHXekesq.o52zbwZEJTpWur8Nwt7FD60eR5wGGZWP5Hw%2FsijX57k; Path=/; HttpOnly"
+              },
+              "Date": {
+                "type": "string",
+                "default": "Mon, 13 Jun 2022 04:31:53 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/usertidakditemukan1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "User Not Found."
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Vary": {
+                "type": "string",
+                "default": "Origin"
+              },
+              "Access-Control-Allow-Header": {
+                "type": "string",
+                "default": "authorization, Origin, Content-Type, Accept"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "29"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"1d-EEpzbLJWdsXbN97zi8QaevBK440\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Mon, 13 Jun 2022 04:51:45 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Passwordsalah1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "accessToken": null,
+                "message": "invalid password"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Vary": {
+                "type": "string",
+                "default": "Origin"
+              },
+              "Access-Control-Allow-Header": {
+                "type": "string",
+                "default": "authorization, Origin, Content-Type, Accept"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "49"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"31-tpORBziLU8kDwIsemueC7sRjYbQ\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Mon, 13 Jun 2022 04:52:41 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile": {
+      "get": {
+        "summary": "Profile",
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "Profile",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/NoToken1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "no token provided!"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Vary": {
+                "type": "string",
+                "default": "Origin"
+              },
+              "Access-Control-Allow-Header": {
+                "type": "string",
+                "default": "authorization, Origin, Content-Type, Accept"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "32"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"20-7ZxkElwq5xcc5pY9DGW1oDebWi8\""
+              },
+              "Set-Cookie": {
+                "type": "string",
+                "default": "connect.sid=s%3A8tjC8aIXGA54Eaki1T-6z4pktZxSqxGp.wtV6fKFu2UCGQzuTKJVEuqSiVXDV8siE6G6C6YYdo7c; Path=/; HttpOnly"
+              },
+              "Date": {
+                "type": "string",
+                "default": "Wed, 15 Jun 2022 13:43:48 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Sukses1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Profil Berhasil Ditampilkan",
+                "data": {
+                  "id": 1,
+                  "nim": "021203",
+                  "nama": "Fauzein Mulya Warman",
+                  "jurusan": {
+                    "id": 1,
+                    "nama_jurusan": "S1 Rekayasa Perangkat Lunak"
+                  },
+                  "ruang": {
+                    "id": 1,
+                    "nama_kelas": "RPL A",
+                    "id_jurusan": 1
+                  }
+                },
+                "status": "mahasiswa"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Vary": {
+                "type": "string",
+                "default": "Origin"
+              },
+              "Access-Control-Allow-Header": {
+                "type": "string",
+                "default": "authorization, Origin, Content-Type, Accept"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "240"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"f0-aRurEWVcLAivPgVZ1HSzs3nq0Dw\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Wed, 15 Jun 2022 13:45:09 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/dosen": {
+      "post": {
+        "summary": "Create",
+        "tags": [
+          "Dosen"
+        ],
+        "operationId": "Create",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Nipisalready1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "NIP is already exists!"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Vary": {
+                "type": "string",
+                "default": "Origin"
+              },
+              "Access-Control-Allow-Header": {
+                "type": "string",
+                "default": "authorization, Origin, Content-Type, Accept"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "36"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"24-Y1RpNzkwjokUjmcyMBbSF+wPexg\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Wed, 15 Jun 2022 13:51:07 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Sukses2"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Dosen berhasil ditambahkan..."
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Vary": {
+                "type": "string",
+                "default": "Origin"
+              },
+              "Access-Control-Allow-Header": {
+                "type": "string",
+                "default": "authorization, Origin, Content-Type, Accept"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "43"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"2b-Er/U7hvdwE6UucWpfwVgLYJYjyU\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Wed, 15 Jun 2022 13:52:43 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "Show All",
+        "tags": [
+          "Dosen"
+        ],
+        "operationId": "ShowAll",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/dosen/{nipDosen}": {
+      "put": {
+        "summary": "Update",
+        "tags": [
+          "Dosen"
+        ],
+        "operationId": "Update",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateRequest"
+            }
+          },
+          {
+            "name": "nipDosen",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "delete": {
+        "summary": "Delete",
+        "tags": [
+          "Dosen"
+        ],
+        "operationId": "Delete",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "nipDosen",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "Show By NIP",
+        "tags": [
+          "Dosen"
+        ],
+        "operationId": "ShowByNIP",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "nipDosen",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/matakuliah/{kodeMatkul}": {
+      "put": {
+        "summary": "Update",
+        "tags": [
+          "Matakuliah"
+        ],
+        "operationId": "PutUpdate",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateRequest1"
+            }
+          },
+          {
+            "name": "kodeMatkul",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "delete": {
+        "summary": "Delete",
+        "tags": [
+          "Matakuliah"
+        ],
+        "operationId": "Delete1",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "kodeMatkul",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "Show By Kode",
+        "tags": [
+          "Matakuliah"
+        ],
+        "operationId": "ShowByKode",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "kodeMatkul",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/matakuliah": {
+      "get": {
+        "summary": "Show All",
+        "tags": [
+          "Matakuliah"
+        ],
+        "operationId": "GetShowAll",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "post": {
+        "summary": "Create",
+        "tags": [
+          "Matakuliah"
+        ],
+        "operationId": "PostCreate",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateRequest1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/jurusan": {
+      "get": {
+        "summary": "Show All",
+        "tags": [
+          "Jurusan"
+        ],
+        "operationId": "GetShowAll1",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "post": {
+        "summary": "Create",
+        "tags": [
+          "Jurusan"
+        ],
+        "operationId": "PostCreate1",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateRequest2"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/jurusan/{idJurusan}": {
+      "put": {
+        "summary": "Update",
+        "tags": [
+          "Jurusan"
+        ],
+        "operationId": "PutUpdate1",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateRequest2"
+            }
+          },
+          {
+            "name": "idJurusan",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "delete": {
+        "summary": "Delete",
+        "tags": [
+          "Jurusan"
+        ],
+        "operationId": "Delete2",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "idJurusan",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "Show By Id",
+        "tags": [
+          "Jurusan"
+        ],
+        "operationId": "ShowById",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "idJurusan",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/jadwal": {
+      "post": {
+        "summary": "Create",
+        "tags": [
+          "Jadwal"
+        ],
+        "operationId": "PostCreate2",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateRequest3"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "Show All",
+        "tags": [
+          "Jadwal"
+        ],
+        "operationId": "GetShowAll2",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/jadwal/{idJadwal}": {
+      "delete": {
+        "summary": "Delete",
+        "tags": [
+          "Jadwal"
+        ],
+        "operationId": "Delete3",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "idJadwal",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "put": {
+        "summary": "Update",
+        "tags": [
+          "Jadwal"
+        ],
+        "operationId": "PutUpdate2",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateRequest3"
+            }
+          },
+          {
+            "name": "idJadwal",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "Show By Id",
+        "tags": [
+          "Jadwal"
+        ],
+        "operationId": "GetShowById",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "idJadwal",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/jadwal/search": {
+      "get": {
+        "summary": "Search",
+        "tags": [
+          "Jadwal"
+        ],
+        "operationId": "Search",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "nip",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "tahun_pelajaran",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/kelas": {
+      "get": {
+        "summary": "Show All",
+        "tags": [
+          "Kelas"
+        ],
+        "operationId": "GetShowAll3",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "post": {
+        "summary": "Create",
+        "tags": [
+          "Kelas"
+        ],
+        "operationId": "PostCreate3",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateRequest4"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/kelas/{idKelas}": {
+      "put": {
+        "summary": "Update",
+        "tags": [
+          "Kelas"
+        ],
+        "operationId": "PutUpdate3",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateRequest4"
+            }
+          },
+          {
+            "name": "idKelas",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "delete": {
+        "summary": "Delete",
+        "tags": [
+          "Kelas"
+        ],
+        "operationId": "Delete4",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "idKelas",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "Show By Id",
+        "tags": [
+          "Kelas"
+        ],
+        "operationId": "GetShowById1",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "idKelas",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/matkul-mahasiswa": {
+      "get": {
+        "summary": "Show All",
+        "tags": [
+          "Matakuliah Mahasiswa"
+        ],
+        "operationId": "GetShowAll4",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "post": {
+        "summary": "Create",
+        "tags": [
+          "Matakuliah Mahasiswa"
+        ],
+        "operationId": "PostCreate4",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateRequest5"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/matkul-mahasiswa/{id}": {
+      "put": {
+        "summary": "Update",
+        "tags": [
+          "Matakuliah Mahasiswa"
+        ],
+        "operationId": "PutUpdate4",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateRequest5"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "delete": {
+        "summary": "Delete",
+        "tags": [
+          "Matakuliah Mahasiswa"
+        ],
+        "operationId": "Delete5",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "Show By Id",
+        "tags": [
+          "Matakuliah Mahasiswa"
+        ],
+        "operationId": "GetShowById2",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/matkul-mahasiswa/search": {
+      "get": {
+        "summary": "Search",
+        "tags": [
+          "Matakuliah Mahasiswa"
+        ],
+        "operationId": "GetSearch",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "semester",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "nim",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/mahasiswa": {
+      "get": {
+        "summary": "Show All",
+        "tags": [
+          "Mahasiswa"
+        ],
+        "operationId": "GetShowAll5",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "post": {
+        "summary": "Create",
+        "tags": [
+          "Mahasiswa"
+        ],
+        "operationId": "PostCreate5",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateRequest6"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/mahasiswa/{nimMahasiswa}": {
+      "put": {
+        "summary": "Update",
+        "tags": [
+          "Mahasiswa"
+        ],
+        "operationId": "PutUpdate5",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateRequest6"
+            }
+          },
+          {
+            "name": "nimMahasiswa",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "delete": {
+        "summary": "Delete",
+        "tags": [
+          "Mahasiswa"
+        ],
+        "operationId": "Delete6",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "nimMahasiswa",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "Show By NIM",
+        "tags": [
+          "Mahasiswa"
+        ],
+        "operationId": "ShowByNIM",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "nimMahasiswa",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/tahun-pelajaran": {
+      "get": {
+        "summary": "Show All",
+        "tags": [
+          "Tahun Pelajaran"
+        ],
+        "operationId": "GetShowAll6",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "post": {
+        "summary": "Create",
+        "tags": [
+          "Tahun Pelajaran"
+        ],
+        "operationId": "PostCreate6",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateRequest7"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/tahun-pelajaran/{idTapel}": {
+      "put": {
+        "summary": "Update",
+        "tags": [
+          "Tahun Pelajaran"
+        ],
+        "operationId": "PutUpdate6",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateRequest7"
+            }
+          },
+          {
+            "name": "idTapel",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "delete": {
+        "summary": "Delete",
+        "tags": [
+          "Tahun Pelajaran"
+        ],
+        "operationId": "Delete7",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "idTapel",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "Show By Id",
+        "tags": [
+          "Tahun Pelajaran"
+        ],
+        "operationId": "GetShowById3",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "idTapel",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/jadwal/dosen": {
+      "get": {
+        "summary": "Jadwal Dosen",
+        "tags": [
+          "API Dosen"
+        ],
+        "operationId": "JadwalDosen",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/matkul-mahasiswa/mahasiswa": {
+      "get": {
+        "summary": "Matkul Mahasiswa",
+        "tags": [
+          "API Mahasiswa"
+        ],
+        "operationId": "MatkulMahasiswa",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    }
+  },
+  "definitions": {
+    "loginrequest": {
+      "title": "loginrequest",
+      "example": {
+        "username": "username",
+        "password": "password"
+      },
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "username",
+        "password"
+      ]
+    },
+    "Sukses": {
+      "title": "Sukses",
+      "example": {
+        "message": "Login successfully...",
+        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjU1MDk0NzEzLCJleHAiOjE2NTUxODExMTN9.cq0NXGtwLw0Gm5HPepuVy2--n7ZrfJySTssoSJ08U8Q"
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "accessToken": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "message",
+        "accessToken"
+      ]
+    },
+    "usertidakditemukan1": {
+      "title": "usertidakditemukan1",
+      "example": {
+        "message": "User Not Found."
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "message"
+      ]
+    },
+    "Passwordsalah1": {
+      "title": "Passwordsalah1",
+      "example": {
+        "accessToken": null,
+        "message": "invalid password"
+      },
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "accessToken",
+        "message"
+      ]
+    },
+    "NoToken1": {
+      "title": "NoToken1",
+      "example": {
+        "message": "no token provided!"
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "message"
+      ]
+    },
+    "Sukses1": {
+      "title": "Sukses1",
+      "example": {
+        "message": "Profil Berhasil Ditampilkan",
+        "data": {
+          "id": 1,
+          "nim": "021203",
+          "nama": "Fauzein Mulya Warman",
+          "jurusan": {
+            "id": 1,
+            "nama_jurusan": "S1 Rekayasa Perangkat Lunak"
+          },
+          "ruang": {
+            "id": 1,
+            "nama_kelas": "RPL A",
+            "id_jurusan": 1
+          }
+        },
+        "status": "mahasiswa"
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "message",
+        "data",
+        "status"
+      ]
+    },
+    "Data": {
+      "title": "Data",
+      "example": {
+        "id": 1,
+        "nim": "021203",
+        "nama": "Fauzein Mulya Warman",
+        "jurusan": {
+          "id": 1,
+          "nama_jurusan": "S1 Rekayasa Perangkat Lunak"
+        },
+        "ruang": {
+          "id": 1,
+          "nama_kelas": "RPL A",
+          "id_jurusan": 1
+        }
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nim": {
+          "type": "string"
+        },
+        "nama": {
+          "type": "string"
+        },
+        "jurusan": {
+          "$ref": "#/definitions/Jurusan"
+        },
+        "ruang": {
+          "$ref": "#/definitions/Ruang"
+        }
+      },
+      "required": [
+        "id",
+        "nim",
+        "nama",
+        "jurusan",
+        "ruang"
+      ]
+    },
+    "Jurusan": {
+      "title": "Jurusan",
+      "example": {
+        "id": 1,
+        "nama_jurusan": "S1 Rekayasa Perangkat Lunak"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nama_jurusan": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "nama_jurusan"
+      ]
+    },
+    "Ruang": {
+      "title": "Ruang",
+      "example": {
+        "id": 1,
+        "nama_kelas": "RPL A",
+        "id_jurusan": 1
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nama_kelas": {
+          "type": "string"
+        },
+        "id_jurusan": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "id",
+        "nama_kelas",
+        "id_jurusan"
+      ]
+    },
+    "CreateRequest": {
+      "title": "CreateRequest",
+      "example": {
+        "nama": "Juni Advan, M.Kom",
+        "nip": "450923",
+        "username": "advan",
+        "password": "Jun1@dvan"
+      },
+      "type": "object",
+      "properties": {
+        "nama": {
+          "type": "string"
+        },
+        "nip": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "nama",
+        "nip",
+        "username",
+        "password"
+      ]
+    },
+    "Nipisalready1": {
+      "title": "Nipisalready1",
+      "example": {
+        "message": "NIP is already exists!"
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "message"
+      ]
+    },
+    "FormatPasswordSalah1": {
+      "title": "FormatPasswordSalah1",
+      "example": {
+        "message": "Format Password Salah, Minimal Password memiliki 8 karakter dengan kombinasi huruf besar, kecil, angka dan karakter spesial!!!"
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "message"
+      ]
+    },
+    "Sukses2": {
+      "title": "Sukses2",
+      "example": {
+        "message": "Dosen berhasil ditambahkan..."
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "message"
+      ]
+    },
+    "UpdateRequest": {
+      "title": "UpdateRequest",
+      "example": {
+        "nama": "Juni Advan, S.pd, M.Kom",
+        "nip": "450923",
+        "username": "advan",
+        "password": "Jun1@dvan"
+      },
+      "type": "object",
+      "properties": {
+        "nama": {
+          "type": "string"
+        },
+        "nip": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "nama",
+        "nip",
+        "username",
+        "password"
+      ]
+    },
+    "UpdateRequest1": {
+      "title": "UpdateRequest1",
+      "example": {
+        "kode_matakuliah": "RPL006",
+        "nama_matakuliah": "Mobile Programming",
+        "semester": 0,
+        "sks": 5,
+        "id_jurusan": 1
+      },
+      "type": "object",
+      "properties": {
+        "kode_matakuliah": {
+          "type": "string"
+        },
+        "nama_matakuliah": {
+          "type": "string"
+        },
+        "semester": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sks": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id_jurusan": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "kode_matakuliah",
+        "nama_matakuliah",
+        "semester",
+        "sks",
+        "id_jurusan"
+      ]
+    },
+    "CreateRequest1": {
+      "title": "CreateRequest1",
+      "example": {
+        "kode_matakuliah": "RPL006",
+        "nama_matakuliah": "Mobile Programming",
+        "semester": 0,
+        "sks": 3,
+        "id_jurusan": 1
+      },
+      "type": "object",
+      "properties": {
+        "kode_matakuliah": {
+          "type": "string"
+        },
+        "nama_matakuliah": {
+          "type": "string"
+        },
+        "semester": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sks": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id_jurusan": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "kode_matakuliah",
+        "nama_matakuliah",
+        "semester",
+        "sks",
+        "id_jurusan"
+      ]
+    },
+    "CreateRequest2": {
+      "title": "CreateRequest2",
+      "example": {
+        "nama_jurusan": "Rekayasa Perangkat Lunak"
+      },
+      "type": "object",
+      "properties": {
+        "nama_jurusan": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "nama_jurusan"
+      ]
+    },
+    "UpdateRequest2": {
+      "title": "UpdateRequest2",
+      "example": {
+        "nama_jurusan": "D3 Rekayasa Perangkat Lunak Aplikasi"
+      },
+      "type": "object",
+      "properties": {
+        "nama_jurusan": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "nama_jurusan"
+      ]
+    },
+    "CreateRequest3": {
+      "title": "CreateRequest3",
+      "example": {
+        "id_dosen": 3,
+        "id_matkul": 5,
+        "hari": "Selasa",
+        "jam_mulai": "13:00:00",
+        "jam_selesai": "14:10:00",
+        "id_kelas": 4,
+        "id_tapel": 2
+      },
+      "type": "object",
+      "properties": {
+        "id_dosen": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id_matkul": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hari": {
+          "type": "string"
+        },
+        "jam_mulai": {
+          "type": "string"
+        },
+        "jam_selesai": {
+          "type": "string"
+        },
+        "id_kelas": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id_tapel": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "id_dosen",
+        "id_matkul",
+        "hari",
+        "jam_mulai",
+        "jam_selesai",
+        "id_kelas",
+        "id_tapel"
+      ]
+    },
+    "UpdateRequest3": {
+      "title": "UpdateRequest3",
+      "example": {
+        "id_dosen": 3,
+        "id_matkul": 5,
+        "hari": "Kamis",
+        "jam_mulai": "13:00:00",
+        "jam_selesai": "14:10:00",
+        "id_kelas": 4,
+        "id_tapel": 2
+      },
+      "type": "object",
+      "properties": {
+        "id_dosen": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id_matkul": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hari": {
+          "type": "string"
+        },
+        "jam_mulai": {
+          "type": "string"
+        },
+        "jam_selesai": {
+          "type": "string"
+        },
+        "id_kelas": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id_tapel": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "id_dosen",
+        "id_matkul",
+        "hari",
+        "jam_mulai",
+        "jam_selesai",
+        "id_kelas",
+        "id_tapel"
+      ]
+    },
+    "CreateRequest4": {
+      "title": "CreateRequest4",
+      "example": {
+        "nama_kelas": "RPL B",
+        "id_jurusan": 1
+      },
+      "type": "object",
+      "properties": {
+        "nama_kelas": {
+          "type": "string"
+        },
+        "id_jurusan": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "nama_kelas",
+        "id_jurusan"
+      ]
+    },
+    "UpdateRequest4": {
+      "title": "UpdateRequest4",
+      "example": {
+        "nama_kelas": "RPL B",
+        "id_jurusan": 1
+      },
+      "type": "object",
+      "properties": {
+        "nama_kelas": {
+          "type": "string"
+        },
+        "id_jurusan": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "nama_kelas",
+        "id_jurusan"
+      ]
+    },
+    "CreateRequest5": {
+      "title": "CreateRequest5",
+      "example": {
+        "id_mahasiswa": 1,
+        "id_matkul": 7,
+        "semester": 7
+      },
+      "type": "object",
+      "properties": {
+        "id_mahasiswa": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id_matkul": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "semester": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "id_mahasiswa",
+        "id_matkul",
+        "semester"
+      ]
+    },
+    "UpdateRequest5": {
+      "title": "UpdateRequest5",
+      "example": {
+        "id_mahasiswa": 1,
+        "id_matkul": 7,
+        "semester": 6
+      },
+      "type": "object",
+      "properties": {
+        "id_mahasiswa": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id_matkul": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "semester": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "id_mahasiswa",
+        "id_matkul",
+        "semester"
+      ]
+    },
+    "CreateRequest6": {
+      "title": "CreateRequest6",
+      "example": {
+        "nim": "021203",
+        "nama": "Fauzein Mulya Warman",
+        "id_jurusan": 1,
+        "id_kelas": 1
+      },
+      "type": "object",
+      "properties": {
+        "nim": {
+          "type": "string"
+        },
+        "nama": {
+          "type": "string"
+        },
+        "id_jurusan": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id_kelas": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "nim",
+        "nama",
+        "id_jurusan",
+        "id_kelas"
+      ]
+    },
+    "UpdateRequest6": {
+      "title": "UpdateRequest6",
+      "example": {
+        "nim": "021203",
+        "nama": "Fauzein Mulya Warman",
+        "id_jurusan": 1,
+        "id_kelas": 2
+      },
+      "type": "object",
+      "properties": {
+        "nim": {
+          "type": "string"
+        },
+        "nama": {
+          "type": "string"
+        },
+        "id_jurusan": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id_kelas": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "nim",
+        "nama",
+        "id_jurusan",
+        "id_kelas"
+      ]
+    },
+    "CreateRequest7": {
+      "title": "CreateRequest7",
+      "example": {
+        "tahun_pelajaran": "2021/2022"
+      },
+      "type": "object",
+      "properties": {
+        "tahun_pelajaran": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "tahun_pelajaran"
+      ]
+    },
+    "UpdateRequest7": {
+      "title": "UpdateRequest7",
+      "example": {
+        "tahun_pelajaran": "2020/2021"
+      },
+      "type": "object",
+      "properties": {
+        "tahun_pelajaran": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "tahun_pelajaran"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "Auth"
+    },
+    {
+      "name": "Dosen"
+    },
+    {
+      "name": "Matakuliah"
+    },
+    {
+      "name": "Jurusan"
+    },
+    {
+      "name": "Jadwal"
+    },
+    {
+      "name": "Kelas"
+    },
+    {
+      "name": "Matakuliah Mahasiswa"
+    },
+    {
+      "name": "Mahasiswa"
+    },
+    {
+      "name": "Tahun Pelajaran"
+    },
+    {
+      "name": "API Dosen"
+    },
+    {
+      "name": "API Mahasiswa"
+    }
+  ]
+}

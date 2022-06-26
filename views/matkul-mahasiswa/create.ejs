@@ -1,0 +1,40 @@
+<div class="container mt-3 mb-5">
+    
+    <% if (msg.length !== 0) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= msg %> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <h2>Tambah Matakuliah Pilihan Mahasiswa</h2>
+
+    <form action="/matkul-mahasiswa" method="post">
+        <div class="mb-3">
+            <label for="mahasiswa" class="form-label">Mahasiswa</label>
+            <select class="form-select" aria-label="Default select example" name="id_mahasiswa" required>
+                <option value="">-- Pilih Mahasiswa --</option>
+                <% dataMahasiswa.forEach((mahasiswa) => { %>
+                    <option value="<%= mahasiswa.id %>">(<%= mahasiswa.nim %>) <%= mahasiswa.nama %></option>
+                <% }) %>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="matakuliah" class="form-label">Matakuliah</label>
+            <select class="form-select" aria-label="Default select example" name="id_matkul" required>
+                <option value="">-- Pilih Matakuliah --</option>
+                <% dataMatakuliah.forEach((matakuliah) => { %>
+                    <% if (matakuliah.semester <= 0) { %>
+                        <option value="<%= matakuliah.id %>">(<%= matakuliah.kode_matakuliah %>) <%= matakuliah.nama_matakuliah %></option>
+                    <% } %>
+                <% }) %>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="semester" class="form-label">Semester</label>
+            <input type="text" class="form-control" id="semester" name="semester" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Simpan</button>
+    </form>
+    
+</div>
